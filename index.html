@@ -11,8 +11,9 @@
     <style>
         :root {
             --bg-pure: #ffffff;
-            --fog-green: rgba(205, 222, 203, 0.5);
+            --fog-green: rgba(198, 222, 195, 0.6);
             --deep-black: #1a1a1a;
+            --nav-border: rgba(0, 0, 0, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -22,78 +23,84 @@
             background-color: var(--bg-pure);
             color: var(--deep-black);
             overflow-x: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* --- DYNAMIC FOG BACKGROUND --- */
+        /* --- DYNAMISCHER NEBEL (OPTIMIERT) --- */
         .fog-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: #fff;
+            background: linear-gradient(to bottom, #fff, #fdfdfd);
         }
 
         .fog-ball {
             position: absolute;
             background: var(--fog-green);
-            filter: blur(130px);
+            filter: blur(100px);
             border-radius: 50%;
-            animation: drift 20s infinite alternate ease-in-out;
+            animation: drift 25s infinite alternate ease-in-out;
+            opacity: 0.7;
         }
 
-        .fog-1 { width: 90vw; height: 90vw; top: -20%; left: -20%; }
-        .fog-2 { width: 70vw; height: 70vw; bottom: -15%; right: -15%; animation-delay: -5s; }
+        .fog-1 { width: 70vw; height: 70vw; top: -10%; left: -10%; animation-duration: 30s; }
+        .fog-2 { width: 60vw; height: 60vw; bottom: 5%; right: -5%; animation-delay: -5s; animation-duration: 25s; }
+        .fog-3 { width: 40vw; height: 40vw; top: 30%; left: 40%; opacity: 0.4; animation-duration: 40s; }
 
         @keyframes drift {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(15%, 10%) scale(1.15); }
+            100% { transform: translate(10%, 15%) scale(1.2); }
         }
 
-        /* --- STICKY FLOATING NAVIGATION --- */
+        /* --- PREMIUM NAVIGATION --- */
         nav {
             position: fixed;
-            top: 30px; left: 50%;
+            top: 40px; left: 50%;
             transform: translateX(-50%);
-            width: 90%; max-width: 1000px;
-            padding: 20px 45px;
+            width: 85%; max-width: 900px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(25px);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px);
             border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--nav-border);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* Scroll-Klasse für die Navleiste */
         nav.scrolled {
-            top: 15px;
-            padding: 12px 40px;
+            top: 20px;
+            width: 95%;
+            padding: 10px 35px;
             background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
         }
 
         .nav-brand {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--deep-black);
-            margin-left: 25px;
-            font-size: 0.65rem;
-            letter-spacing: 3px;
+            margin-left: 30px;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 300;
-            transition: 0.3s;
+            opacity: 0.7;
+            transition: 0.4s;
         }
 
-        .nav-links a:hover { opacity: 0.5; }
+        .nav-links a:hover { opacity: 1; }
 
         /* --- HERO --- */
         .hero {
@@ -106,82 +113,85 @@
         }
 
         .hero span {
-            font-size: 0.75rem;
-            letter-spacing: 14px;
+            font-size: 0.7rem;
+            letter-spacing: 15px;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             opacity: 0.4;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 9vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 300;
             font-style: italic;
+            letter-spacing: -1px;
         }
 
-        /* --- LEISTUNGEN --- */
+        /* --- LEISTUNGEN (DEZENTER & ANIMIERT) --- */
         .section {
-            padding: 140px 20px;
+            padding: 150px 20px;
             text-align: center;
         }
 
         .label {
-            font-size: 0.65rem;
-            letter-spacing: 10px;
+            font-size: 0.6rem;
+            letter-spacing: 12px;
             text-transform: uppercase;
-            margin-bottom: 100px;
-            opacity: 0.4;
+            margin-bottom: 120px;
+            opacity: 0.3;
         }
 
         .service-stack {
             display: flex;
             flex-direction: column;
-            gap: 55px;
+            gap: 40px; /* Enge Abstände für Eleganz */
         }
 
         .service-stack h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem); /* Schriftgröße reduziert */
             font-weight: 300;
+            letter-spacing: 1px;
+            color: rgba(26, 26, 26, 0.85);
         }
 
         /* --- PREISE --- */
         .pricing-row {
             display: flex;
             justify-content: center;
-            gap: 100px;
+            gap: 120px;
             margin-top: 50px;
         }
 
         .price-item .time {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: #999;
-            margin-bottom: 10px;
+            color: #aaa;
+            margin-bottom: 5px;
         }
 
         .price-item .val {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 300;
         }
 
-        /* --- CONTACT CARD --- */
+        /* --- KONTAKT --- */
         .contact-card {
             margin: 100px auto;
-            padding: 100px 40px;
-            max-width: 900px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(0,0,0,0.02);
+            padding: 120px 40px;
+            max-width: 800px;
+            border-top: 1px solid rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
 
         .contact-card h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 300;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             font-style: italic;
         }
 
@@ -190,28 +200,27 @@
             text-decoration: none;
             color: var(--deep-black);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 15px 0;
             font-weight: 300;
-            transition: 0.4s;
+            transition: 0.5s;
         }
 
-        .contact-card a:hover { font-style: italic; opacity: 0.6; }
+        .contact-card a:hover { opacity: 0.4; }
 
-        /* --- FOOTER --- */
         footer {
-            padding: 120px 20px 60px 20px;
+            padding: 100px 20px;
             text-align: center;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
+            font-size: 0.6rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            opacity: 0.4;
+            opacity: 0.3;
         }
 
         @media (max-width: 768px) {
-            .pricing-row { flex-direction: column; gap: 50px; }
+            .pricing-row { flex-direction: column; gap: 60px; }
             .nav-links { display: none; }
-            nav { padding: 15px 30px; }
+            nav { width: 90%; top: 20px; }
         }
     </style>
 </head>
@@ -220,40 +229,42 @@
     <div class="fog-container">
         <div class="fog-ball fog-1"></div>
         <div class="fog-ball fog-2"></div>
+        <div class="fog-ball fog-3"></div>
     </div>
 
     <nav id="main-nav">
-        <div class="nav-brand">Melanie’s Massage Studio</div>
+        <div class="nav-brand">Melanie’s</div>
         <div class="nav-links">
-            <a href="#leistungen">Leistungen</a>
+            <a href="#leistungen">Portfolio</a>
             <a href="#preise">Preise</a>
             <a href="#anfrage">Anfrage</a>
         </div>
     </nav>
 
     <header class="hero">
-        <span data-aos="fade-down" data-aos-duration="1500">71732 Tamm</span>
-        <h1 data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">Melanie’s <br>Massage Studio</h1>
+        <span data-aos="fade-down" data-aos-duration="2000">71732 Tamm</span>
+        <h1 data-aos="fade-up" data-aos-duration="2500">Melanie’s <br>Massage Studio</h1>
     </header>
 
     <div class="container">
         
         <section id="leistungen" class="section">
-            <p class="label" data-aos="fade-up">Portfolio</p>
+            <p class="label" data-aos="fade-up">Ausgewähltes Portfolio</p>
             <div class="service-stack">
-                <div data-aos="fade-up" data-aos-delay="100"><h3>Klassische Massage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="200"><h3>Sportmassage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="300"><h3>Triggerpunkt & Deep Tissue</h3></div>
-                <div data-aos="fade-up" data-aos-delay="400"><h3>Entspannungsmassage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="500"><h3>Kieferbalance R.E.S.E.T.&reg;</h3></div>
-                <div data-aos="fade-up" data-aos-delay="600"><h3>Dorn-Therapie</h3></div>
-                <div data-aos="fade-up" data-aos-delay="700"><h3>Schröpfmassage</h3></div>
+                <!-- Staggered Animation mit individuellen Delay-Werten -->
+                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500"><h3>Klassische Massage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="250" data-aos-duration="1500"><h3>Sportmassage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500"><h3>Triggerpunkt & Deep Tissue</h3></div>
+                <div data-aos="fade-up" data-aos-delay="550" data-aos-duration="1500"><h3>Entspannungsmassage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="700" data-aos-duration="1500"><h3>Kieferbalance R.E.S.E.T.&reg;</h3></div>
+                <div data-aos="fade-up" data-aos-delay="850" data-aos-duration="1500"><h3>Dorn-Therapie</h3></div>
+                <div data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1500"><h3>Schröpfmassage</h3></div>
             </div>
         </section>
 
         <section id="preise" class="section">
             <p class="label" data-aos="fade-up">Preise</p>
-            <div class="pricing-row" data-aos="fade-up">
+            <div class="pricing-row" data-aos="fade-up" data-aos-duration="2000">
                 <div class="price-item">
                     <div class="time">30 Minuten</div>
                     <div class="val">30€</div>
@@ -270,11 +281,11 @@
         </section>
 
         <section id="anfrage" class="section">
-            <div class="contact-card" data-aos="zoom-in" data-aos-duration="1800">
+            <div class="contact-card" data-aos="fade-up" data-aos-duration="2000">
                 <h2>Terminanfrage</h2>
                 <a href="tel:015121216676">0151 21216676</a>
                 <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
-                <p style="margin-top: 50px; font-size: 0.65rem; letter-spacing: 6px; opacity: 0.4;">TAMM • BADEN-WÜRTTEMBERG</p>
+                <p style="margin-top: 60px; font-size: 0.6rem; letter-spacing: 8px; opacity: 0.3;">Tamm • Baden-Württemberg</p>
             </div>
         </section>
 
@@ -286,13 +297,16 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS Animationen initialisieren
-        AOS.init({ duration: 1500, once: true });
+        // AOS mit sanfteren Einstellungen
+        AOS.init({ 
+            once: true,
+            easing: 'ease-out-quad'
+        });
 
-        // Scroll-Animation für die Navigationsleiste
+        // Optimierte Scroll-Logik
         window.onscroll = function() {
             const nav = document.getElementById('main-nav');
-            if (window.pageYOffset > 50) {
+            if (window.pageYOffset > 80) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
