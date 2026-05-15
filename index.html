@@ -3,44 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoller Bodywork | Tamm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Melanies Massagestudio | Tamm</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
-            --pastel-green: #dcedc8;
-            --soft-white: #fcfcfc;
-            --deep-black: #1a1a1a;
-            --smoke-glass: rgba(255, 255, 255, 0.7);
+            --pastel-green: #e1eedd;
+            --deep-green: #b4c7ae;
+            --soft-white: #ffffff;
+            --accent-black: #222222;
+            --smoke-bg: rgba(255, 255, 255, 0.8);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--soft-white);
-            color: var(--deep-black);
-            line-height: 1.6;
+            color: var(--accent-black);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Hintergrund-Effekt für den Smokey-Look */
-        body::before {
-            content: "";
+        /* Sanfter Smokey-Hintergrund-Effekt */
+        .smoke-blob {
             position: fixed;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, var(--pastel-green) 0%, rgba(255,255,255,0) 70%);
+            width: 600px;
+            height: 600px;
+            background: var(--pastel-green);
+            filter: blur(120px);
+            border-radius: 50%;
             z-index: -1;
-            filter: blur(80px);
-            opacity: 0.5;
+            opacity: 0.6;
+            animation: drift 15s infinite alternate ease-in-out;
         }
 
+        @keyframes drift {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 30%); }
+        }
+
+        /* Hero-Bereich */
         header {
             height: 100vh;
             display: flex;
@@ -49,168 +58,178 @@
             align-items: center;
             text-align: center;
             padding: 20px;
+            background: radial-gradient(circle at center, transparent, var(--soft-white));
         }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 400;
             margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .location-tag {
             text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            color: var(--deep-green);
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
+        /* Container & Sektionen */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 25px;
         }
 
         section {
-            margin-bottom: 80px;
+            padding: 100px 0;
+            clear: both;
         }
 
         h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             text-align: center;
-            margin-bottom: 40px;
-            font-weight: 400;
-            border-bottom: 1px solid var(--pastel-green);
-            display: inline-block;
-            left: 50%;
-            position: relative;
-            transform: translateX(-50%);
         }
 
-        /* Leistungen Grid */
+        /* Leistungen als fließende Liste */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .card {
-            background: var(--smoke-glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--pastel-green);
-        }
-
-        /* Preise */
-        .price-list {
-            background: var(--deep-black);
-            color: white;
+        .service-card {
+            background: var(--smoke-bg);
             padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: 40px;
+            border-radius: 2px; /* Cleane Kanten */
+            border-left: 4px solid var(--pastel-green);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
 
-        .price-item {
+        .service-card:hover {
+            background: var(--soft-white);
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Preistabelle - Clean & Schwarz Akzentuiert */
+        .pricing-box {
+            background: var(--accent-black);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .price-row {
             display: flex;
             justify-content: space-between;
-            max-width: 400px;
-            margin: 15px auto;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
+            padding: 20px 0;
+            border-bottom: 1px solid #444;
+            font-size: 1.2rem;
         }
 
-        /* Kontakt & Standort */
-        .contact-info {
+        /* Kontakt */
+        .contact-wrapper {
             text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
+            background: var(--pastel-green);
+            padding: 80px 20px;
+            border-radius: 5px;
         }
 
-        .contact-info a {
-            color: var(--deep-black);
-            text-decoration: none;
+        .contact-link {
             display: block;
-            margin: 10px 0;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--accent-black);
+            text-decoration: none;
+            margin: 15px 0;
+            font-weight: 500;
+            transition: opacity 0.3s;
         }
 
-        .contact-info a:hover {
-            color: #7a9c54; /* Dunkleres Pastellgrün */
+        .contact-link:hover {
+            opacity: 0.6;
         }
 
         footer {
-            text-align: center;
             padding: 40px;
+            text-align: center;
             font-size: 0.8rem;
-            color: #888;
+            opacity: 0.5;
         }
 
-        /* Mobile Ansicht Optimierung */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 20px; }
-            .contact-info { padding: 30px 15px; }
+        /* Mobile Anpassungen */
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            h1 { font-size: 2.8rem; }
+            .pricing-box { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Zoller Bodywork</h1>
-        <p class="subtitle">Professionelle Massagen in Tamm</p>
-        <div style="width: 50px; height: 2px; background: var(--deep-black);"></div>
+    <div class="smoke-blob"></div>
+
+    <header data-aos="fade-up">
+        <p class="location-tag">Herzlich Willkommen in Tamm</p>
+        <h1>Melanies Massagestudio</h1>
+        <div style="height: 1px; width: 80px; background: var(--accent-black); margin-top: 20px;"></div>
     </header>
 
     <div class="container">
         
         <section id="leistungen">
-            <h2>Meine Leistungen</h2>
+            <h2 data-aos="fade-down">Meine Leistungen</h2>
             <div class="services-grid">
-                <div class="card">Klassische Massage</div>
-                <div class="card">Sportmassage</div>
-                <div class="card">Triggerpunkt & Deep Tissue</div>
-                <div class="card">Entspannungsmassage</div>
-                <div class="card">Kieferbalance R.E.S.E.T.&reg;</div>
-                <div class="card">Dorn-Therapie</div>
-                <div class="card">Schröpfmassage</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">Klassische Massage</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">Sportmassage</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">Triggerpunkt & Deep Tissue</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">Entspannungsmassage</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">Kieferbalance R.E.S.E.T.&reg;</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">Dorn-Therapie</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="700">Schröpfmassage</div>
             </div>
         </section>
 
-        <section id="preise">
-            <div class="price-list">
-                <h2 style="color: white; border-color: var(--pastel-green);">Preise</h2>
-                <div class="price-item"><span>30 Minuten</span> <span>30,00 €</span></div>
-                <div class="price-item"><span>40 Minuten</span> <span>40,00 €</span></div>
-                <div class="price-item"><span>60 Minuten</span> <span>60,00 €</span></div>
+        <section id="preise" data-aos="zoom-in">
+            <div class="pricing-box">
+                <h2 style="color: white; margin-bottom: 30px;">Zeit für Dich</h2>
+                <div class="price-row"><span>30 Minuten</span> <span>30 €</span></div>
+                <div class="price-row"><span>40 Minuten</span> <span>40 €</span></div>
+                <div class="price-row"><span>60 Minuten</span> <span>60 €</span></div>
             </div>
         </section>
 
-        <section id="kontakt">
-            <div class="contact-info">
-                <h2>Kontakt & Standort</h2>
-                <p>Besuchen Sie mich in meinem Massagezimmer in:</p>
-                <p style="margin-bottom: 20px;"><strong>71732 Tamm</strong></p>
-                
-                <a href="tel:015121216676">Mobil: 0151 21216676</a>
-                <a href="mailto:Zoller.bodywork@hotmail.com">Zoller.bodywork@hotmail.com</a>
+        <section id="kontakt" data-aos="fade-up">
+            <div class="contact-wrapper">
+                <h2>Kontakt</h2>
+                <p>Ich freue mich auf Deine Anfrage</p>
+                <a href="tel:015121216676" class="contact-link">0151 21216676</a>
+                <a href="mailto:Zoller.bodywork@hotmail.com" class="contact-link">Zoller.bodywork@hotmail.com</a>
+                <p style="margin-top: 30px;">71732 Tamm</p>
             </div>
         </section>
 
     </div>
 
     <footer>
-        &copy; 2026 Zoller Bodywork. Alle Rechte vorbehalten.
+        &copy; 2026 Melanies Massagestudio | 71732 Tamm
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
