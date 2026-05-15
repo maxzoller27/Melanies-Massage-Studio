@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoller Bodywork | Tamm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-green: #dcedc8;
+            --soft-white: #fcfcfc;
+            --deep-black: #1a1a1a;
+            --smoke-glass: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--deep-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hintergrund-Effekt für den Smokey-Look */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, var(--pastel-green) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 400;
+            border-bottom: 1px solid var(--pastel-green);
+            display: inline-block;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
+        }
+
+        /* Leistungen Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--smoke-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pastel-green);
+        }
+
+        /* Preise */
+        .price-list {
+            background: var(--deep-black);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            max-width: 400px;
+            margin: 15px auto;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        /* Kontakt & Standort */
+        .contact-info {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .contact-info a {
+            color: var(--deep-black);
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            color: #7a9c54; /* Dunkleres Pastellgrün */
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Mobile Ansicht Optimierung */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 20px; }
+            .contact-info { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Zoller Bodywork</h1>
+        <p class="subtitle">Professionelle Massagen in Tamm</p>
+        <div style="width: 50px; height: 2px; background: var(--deep-black);"></div>
+    </header>
+
+    <div class="container">
+        
+        <section id="leistungen">
+            <h2>Meine Leistungen</h2>
+            <div class="services-grid">
+                <div class="card">Klassische Massage</div>
+                <div class="card">Sportmassage</div>
+                <div class="card">Triggerpunkt & Deep Tissue</div>
+                <div class="card">Entspannungsmassage</div>
+                <div class="card">Kieferbalance R.E.S.E.T.&reg;</div>
+                <div class="card">Dorn-Therapie</div>
+                <div class="card">Schröpfmassage</div>
+            </div>
+        </section>
+
+        <section id="preise">
+            <div class="price-list">
+                <h2 style="color: white; border-color: var(--pastel-green);">Preise</h2>
+                <div class="price-item"><span>30 Minuten</span> <span>30,00 €</span></div>
+                <div class="price-item"><span>40 Minuten</span> <span>40,00 €</span></div>
+                <div class="price-item"><span>60 Minuten</span> <span>60,00 €</span></div>
+            </div>
+        </section>
+
+        <section id="kontakt">
+            <div class="contact-info">
+                <h2>Kontakt & Standort</h2>
+                <p>Besuchen Sie mich in meinem Massagezimmer in:</p>
+                <p style="margin-bottom: 20px;"><strong>71732 Tamm</strong></p>
+                
+                <a href="tel:015121216676">Mobil: 0151 21216676</a>
+                <a href="mailto:Zoller.bodywork@hotmail.com">Zoller.bodywork@hotmail.com</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Zoller Bodywork. Alle Rechte vorbehalten.
+    </footer>
+
+</body>
+</html>
