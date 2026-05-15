@@ -3,55 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melanies Massagestudio | Tamm</title>
+    <title>Melanie’s Massage Studio | Premium Bodywork</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --pastel-green: #d8e8d8;
-            --accent-green: #a8c6a8;
-            --glass: rgba(255, 255, 255, 0.7);
-            --dark: #121212;
+            --bg-white: #ffffff;
+            --pastel-green: #e9f0e8;
+            --premium-black: #1a1a1a;
+            --smoke-soft: rgba(233, 240, 232, 0.6);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #fff;
-            color: var(--dark);
+            background-color: var(--bg-white);
+            color: var(--premium-black);
+            line-height: 1.6;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Navigationsleiste */
+        /* --- SMOOTH BACKGROUND --- */
+        .liquid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, var(--pastel-green), #fff);
+            filter: blur(80px);
+        }
+
+        .smoke-orb {
+            position: absolute;
+            background: var(--pastel-green);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: drift 25s infinite alternate ease-in-out;
+            opacity: 0.5;
+        }
+
+        @keyframes drift {
+            from { transform: translate(-10%, -10%) scale(1); }
+            to { transform: translate(20%, 15%) scale(1.2); }
+        }
+
+        /* --- NAVIGATION --- */
         nav {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 15px 30px;
-            border-radius: 50px;
+            top: 0; width: 100%;
+            padding: 30px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.5s ease;
+            background: rgba(255,255,255,0.01);
+            backdrop-filter: blur(5px);
         }
 
-        .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); margin-left: 20px; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-green); }
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
 
-        /* Hero mit Full-Screen Effekt */
+        .nav-links a {
+            text-decoration: none;
+            color: var(--premium-black);
+            margin-left: 40px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover { opacity: 0.5; }
+
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -59,203 +92,241 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, var(--pastel-green) 0%, #fff 70%);
         }
 
-        .hero span { text-transform: uppercase; letter-spacing: 8px; font-weight: 300; margin-bottom: 10px; display: block; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem); line-height: 1; }
-
-        /* Sektionen */
-        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
-
-        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 80px; position: relative; }
-        .section-title::after { content: ""; width: 50px; height: 2px; background: var(--accent-green); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
-
-        /* Leistungen Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .hero span {
+            font-size: 0.9rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 200;
         }
 
-        .card {
-            background: #fff;
-            padding: 50px 30px;
-            border-radius: 30px;
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        /* --- SECTIONS --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+        .section-header {
             text-align: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eee;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 100px;
         }
 
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border-color: var(--pastel-green);
-        }
-
-        .card i { color: var(--accent-green); margin-bottom: 20px; width: 40px; height: 40px; }
-        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; }
-
-        /* Zeit für Dich - Premium Cards */
-        .pricing {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .price-item {
-            background: var(--dark);
-            color: #fff;
-            width: 300px;
-            padding: 60px 20px;
-            border-radius: 150px;
-            text-align: center;
-            transition: 0.4s;
-        }
-
-        .price-item:nth-child(even) {
-            background: var(--accent-green);
-            color: var(--dark);
-            transform: translateY(30px);
-        }
-
-        .price-item span { display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .price-item strong { font-family: 'Playfair Display', serif; font-size: 3rem; }
-
-        /* Kontakt - Mindblowing Reveal */
-        .contact {
-            background: var(--dark);
-            color: #fff;
-            border-radius: 50px;
-            padding: 100px 40px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .contact h2 { color: #fff; font-size: 4rem; margin-bottom: 40px; }
-        .contact a {
-            display: block;
-            color: var(--pastel-green);
-            font-size: 1.8rem;
-            text-decoration: none;
-            margin: 20px 0;
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
             font-weight: 300;
-            transition: 0.3s;
         }
 
-        .contact a:hover { letter-spacing: 2px; }
+        /* --- SERVICES GRID --- */
+        .services-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 150px;
+        }
 
-        footer { text-align: center; padding: 50px; opacity: 0.5; font-size: 0.8rem; }
+        .service-item {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+            transition: 0.5s;
+        }
 
-        /* Mobile */
+        .service-item:hover {
+            border-color: var(--premium-black);
+            padding-left: 50px;
+        }
+
+        .service-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .service-icon { color: var(--premium-black); margin-bottom: 20px; opacity: 0.6; }
+
+        /* --- PREMIUM PRICING --- */
+        .pricing-premium {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #fafafa;
+            padding: 100px 40px;
+            border-radius: 4px;
+            margin-bottom: 150px;
+        }
+
+        .price-box { text-align: center; position: relative; }
+        .price-box span { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+        .price-box h4 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; margin-top: 10px; }
+
+        /* --- LUXURY CONTACT --- */
+        .contact-premium {
+            text-align: center;
+            padding-bottom: 150px;
+        }
+
+        .contact-premium h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .contact-premium a {
+            display: inline-block;
+            color: var(--premium-black);
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 10px 30px;
+            border-bottom: 1px solid transparent;
+            transition: 0.4s;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .contact-premium a:hover { border-color: var(--premium-black); }
+
+        footer {
+            padding: 60px;
+            border-top: 1px solid #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            nav { width: 95%; padding: 10px 20px; }
-            .nav-links { display: none; } /* Mobile Menu Vereinfachung */
-            .price-item { width: 100%; transform: none !important; margin-bottom: 20px; }
-            .section-title { font-size: 2rem; }
+            nav { padding: 20px; }
+            .nav-links { display: none; }
+            .pricing-premium { flex-direction: column; gap: 60px; }
+            .contact-premium h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">MM</div>
+    <div class="liquid-bg">
+        <div class="smoke-orb" style="width: 600px; height: 600px; top: -10%; left: -10%;"></div>
+        <div class="smoke-orb" style="width: 500px; height: 500px; bottom: -5%; right: -5%; animation-delay: -5s;"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-brand">Melanie’s Massage Studio</div>
         <div class="nav-links">
-            <a href="#leistungen">Leistungen</a>
-            <a href="#preise">Preise</a>
+            <a href="#leistungen">Portfolio</a>
+            <a href="#preise">Investition</a>
             <a href="#kontakt">Kontakt</a>
         </div>
     </nav>
 
     <header class="hero">
-        <span data-aos="fade-up">Tamm</span>
-        <h1 data-aos="zoom-in" data-aos-delay="200">Melanies<br>Massagestudio</h1>
+        <span data-aos="fade-up" data-aos-duration="1500">Tamm</span>
+        <h1 data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">Kunst der <br><em>Entspannung</em></h1>
     </header>
 
     <div class="container">
         
         <section id="leistungen">
-            <h2 class="section-title" data-aos="fade-right">Exklusive Behandlungen</h2>
-            <div class="grid">
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="sparkles"></i>
+            <div class="section-header" data-aos="fade-up">
+                <h2>Das Portfolio</h2>
+            </div>
+            <div class="services-wrapper">
+                <div class="service-item" data-aos="fade-up">
+                    <div class="service-icon"><i data-lucide="hand"></i></div>
                     <h3>Klassische Massage</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="zap"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon"><i data-lucide="dumbbell"></i></div>
                     <h3>Sportmassage</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <i data-lucide="activity"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon"><i data-lucide="focus"></i></div>
                     <h3>Triggerpunkt & Deep Tissue</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="400">
-                    <i data-lucide="wind"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon"><i data-lucide="cloud"></i></div>
                     <h3>Entspannungsmassage</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="500">
-                    <i data-lucide="refresh-cw"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon"><i data-lucide="refresh-ccw"></i></div>
                     <h3>Kieferbalance R.E.S.E.T.&reg;</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="600">
-                    <i data-lucide="align-justify"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon"><i data-lucide="shield-check"></i></div>
                     <h3>Dorn-Therapie</h3>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="700">
-                    <i data-lucide="circle"></i>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon"><i data-lucide="circle-dot"></i></div>
                     <h3>Schröpfmassage</h3>
                 </div>
             </div>
         </section>
 
         <section id="preise">
-            <h2 class="section-title" data-aos="fade-left">Zeit für Dich</h2>
-            <div class="pricing">
-                <div class="price-item" data-aos="zoom-in-up" data-aos-delay="100">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Investition in Dich</h2>
+            </div>
+            <div class="pricing-premium" data-aos="fade-up">
+                <div class="price-box">
                     <span>30 Minuten</span>
-                    <strong>30 €</strong>
+                    <h4>30€</h4>
                 </div>
-                <div class="price-item" data-aos="zoom-in-up" data-aos-delay="300">
+                <div class="price-box">
                     <span>40 Minuten</span>
-                    <strong>40 €</strong>
+                    <h4>40€</h4>
                 </div>
-                <div class="price-item" data-aos="zoom-in-up" data-aos-delay="500">
+                <div class="price-box">
                     <span>60 Minuten</span>
-                    <strong>60 €</strong>
+                    <h4>60€</h4>
                 </div>
             </div>
         </section>
 
-        <section id="kontakt" data-aos="fade-up">
-            <div class="contact">
-                <span>Sag Hallo</span>
-                <h2>Lass uns entspannen.</h2>
+        <section id="kontakt">
+            <div class="contact-premium" data-aos="fade-up">
+                <span>Lass uns beginnen</span>
+                <h2>Deine Terminanfrage</h2>
                 <a href="tel:015121216676">0151 21216676</a>
                 <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
-                <p style="margin-top: 40px; letter-spacing: 5px;">71732 TAMM</p>
+                <p style="margin-top: 50px; letter-spacing: 4px; font-weight: 200;">71732 TAMM</p>
             </div>
         </section>
 
     </div>
 
     <footer>
-        &copy; 2026 Melanies Massagestudio. High-End Relaxation.
+        <div>&copy; 2026 Melanie’s Massage Studio</div>
+        <div>Premium Aesthetics & Wellness</div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         lucide.createIcons();
-        AOS.init({ duration: 1200, once: false });
+        AOS.init({ duration: 1500, once: true });
 
-        // Kleiner Parallax-Effekt für den Header
-        window.addEventListener('scroll', function() {
-            const scroll = window.pageYOffset;
-            document.querySelector('.hero h1').style.transform = `translateY(${scroll * 0.3}px)`;
-        });
+        // Navbar-Scroll Effekt
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 100) {
+                nav.style.padding = "15px 60px";
+                nav.style.background = "rgba(255,255,255,0.95)";
+                nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.02)";
+            } else {
+                nav.style.padding = "30px 60px";
+                nav.style.background = "transparent";
+                nav.style.boxShadow = "none";
+            }
+        };
     </script>
 </body>
 </html>
