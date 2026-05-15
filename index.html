@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melanies Massagestudio | Tamm</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <!-- Lucide Icons für die Piktogramme -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         :root {
-            --pastel-green: #e1eedd;
-            --deep-green: #b4c7ae;
+            --pastel-green: #e8f3e8;
+            --accent-green: #b8d4b8;
             --soft-white: #ffffff;
-            --accent-black: #222222;
-            --smoke-bg: rgba(255, 255, 255, 0.8);
+            --deep-black: #1a1a1a;
+            --smoke-rgba: rgba(255, 255, 255, 0.85);
         }
 
         * {
@@ -26,30 +29,37 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--soft-white);
-            color: var(--accent-black);
-            line-height: 1.7;
+            color: var(--deep-black);
             overflow-x: hidden;
         }
 
-        /* Sanfter Smokey-Hintergrund-Effekt */
-        .smoke-blob {
+        /* Flüssiger Smoke-Hintergrund */
+        .smoke-container {
             position: fixed;
-            width: 600px;
-            height: 600px;
-            background: var(--pastel-green);
-            filter: blur(120px);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            opacity: 0.6;
-            animation: drift 15s infinite alternate ease-in-out;
+            background: linear-gradient(135deg, #fff 0%, var(--pastel-green) 100%);
         }
 
-        @keyframes drift {
+        .smoke-blob {
+            position: absolute;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: move 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
             from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 30%); }
+            to { transform: translate(30%, 20%); }
         }
 
-        /* Hero-Bereich */
+        /* Header */
         header {
             height: 100vh;
             display: flex;
@@ -58,173 +68,226 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            background: radial-gradient(circle at center, transparent, var(--soft-white));
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2.2rem, 7vw, 4rem);
             font-weight: 400;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
         }
 
-        .location-tag {
+        .tagline {
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            color: var(--deep-green);
-            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: #777;
         }
 
-        /* Container & Sektionen */
+        /* Sektionen */
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 20px;
         }
 
         section {
             padding: 100px 0;
-            clear: both;
         }
 
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 2.2rem;
             text-align: center;
+            margin-bottom: 50px;
         }
 
-        /* Leistungen als fließende Liste */
+        /* Leistungen mit Piktogrammen */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .service-card {
-            background: var(--smoke-bg);
+            background: var(--smoke-rgba);
+            backdrop-filter: blur(10px);
             padding: 40px;
-            border-radius: 2px; /* Cleane Kanten */
-            border-left: 4px solid var(--pastel-green);
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
+            transform: translateY(-10px);
             background: var(--soft-white);
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            border-color: var(--accent-green);
         }
 
-        /* Preistabelle - Clean & Schwarz Akzentuiert */
-        .pricing-box {
-            background: var(--accent-black);
-            color: white;
-            padding: 60px 40px;
-            border-radius: 5px;
-            max-width: 600px;
-            margin: 0 auto;
+        .icon-box {
+            color: var(--accent-green);
+            margin-bottom: 20px;
         }
 
-        .price-row {
+        /* "Zeit für Dich" Kacheln - NEU */
+        .pricing-container {
             display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid #444;
-            font-size: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .price-card {
+            background: var(--soft-white);
+            border: 1px solid var(--pastel-green);
+            padding: 30px;
+            width: 250px;
+            border-radius: 100px; /* Abgerundete Pillenform */
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .price-card:hover {
+            background: var(--deep-black);
+            color: white;
+        }
+
+        .price-card span {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .price-card strong {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
         }
 
         /* Kontakt */
-        .contact-wrapper {
+        .contact-box {
+            background: var(--deep-black);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 30px;
             text-align: center;
-            background: var(--pastel-green);
-            padding: 80px 20px;
-            border-radius: 5px;
         }
 
-        .contact-link {
-            display: block;
-            font-size: 1.5rem;
-            color: var(--accent-black);
+        .contact-box a {
+            color: var(--accent-green);
             text-decoration: none;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            display: block;
             margin: 15px 0;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .contact-link:hover {
-            opacity: 0.6;
+            font-weight: 600;
         }
 
         footer {
             padding: 40px;
             text-align: center;
             font-size: 0.8rem;
-            opacity: 0.5;
+            color: #999;
         }
 
-        /* Mobile Anpassungen */
+        /* Mobile Anpassung */
         @media (max-width: 768px) {
             section { padding: 60px 0; }
-            h1 { font-size: 2.8rem; }
-            .pricing-box { padding: 30px 20px; }
+            .price-card { width: 100%; border-radius: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="smoke-blob"></div>
+    <div class="smoke-container">
+        <div class="smoke-blob"></div>
+    </div>
 
-    <header data-aos="fade-up">
-        <p class="location-tag">Herzlich Willkommen in Tamm</p>
+    <header data-aos="zoom-out" data-aos-duration="1500">
+        <p class="tagline">Tamm • Wohlbefinden • Balance</p>
         <h1>Melanies Massagestudio</h1>
-        <div style="height: 1px; width: 80px; background: var(--accent-black); margin-top: 20px;"></div>
+        <div style="width: 40px; height: 1px; background: #000; margin-top: 20px;"></div>
     </header>
 
     <div class="container">
         
         <section id="leistungen">
-            <h2 data-aos="fade-down">Meine Leistungen</h2>
+            <h2 data-aos="fade-up">Heilsame Berührungen</h2>
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">Klassische Massage</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">Sportmassage</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">Triggerpunkt & Deep Tissue</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">Entspannungsmassage</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">Kieferbalance R.E.S.E.T.&reg;</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="600">Dorn-Therapie</div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="700">Schröpfmassage</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                    <h3>Klassische Massage</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i data-lucide="activity"></i></div>
+                    <h3>Sportmassage</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box"><i data-lucide="target"></i></div>
+                    <h3>Triggerpunkt & Deep Tissue</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon-box"><i data-lucide="wind"></i></div>
+                    <h3>Entspannungsmassage</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="icon-box"><i data-lucide="refresh-cw"></i></div>
+                    <h3>Kieferbalance R.E.S.E.T.&reg;</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="icon-box"><i data-lucide="accessibility"></i></div>
+                    <h3>Dorn-Therapie</h3>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="icon-box"><i data-lucide="circle-dot"></i></div>
+                    <h3>Schröpfmassage</h3>
+                </div>
             </div>
         </section>
 
-        <section id="preise" data-aos="zoom-in">
-            <div class="pricing-box">
-                <h2 style="color: white; margin-bottom: 30px;">Zeit für Dich</h2>
-                <div class="price-row"><span>30 Minuten</span> <span>30 €</span></div>
-                <div class="price-row"><span>40 Minuten</span> <span>40 €</span></div>
-                <div class="price-row"><span>60 Minuten</span> <span>60 €</span></div>
+        <section id="preise">
+            <h2 data-aos="fade-up">Zeit für Dich</h2>
+            <div class="pricing-container">
+                <div class="price-card" data-aos="flip-left" data-aos-delay="100">
+                    <span>30 Minuten</span>
+                    <strong>30 €</strong>
+                </div>
+                <div class="price-card" data-aos="flip-left" data-aos-delay="200">
+                    <span>40 Minuten</span>
+                    <strong>40 €</strong>
+                </div>
+                <div class="price-card" data-aos="flip-left" data-aos-delay="300">
+                    <span>60 Minuten</span>
+                    <strong>60 €</strong>
+                </div>
             </div>
         </section>
 
         <section id="kontakt" data-aos="fade-up">
-            <div class="contact-wrapper">
-                <h2>Kontakt</h2>
-                <p>Ich freue mich auf Deine Anfrage</p>
-                <a href="tel:015121216676" class="contact-link">0151 21216676</a>
-                <a href="mailto:Zoller.bodywork@hotmail.com" class="contact-link">Zoller.bodywork@hotmail.com</a>
-                <p style="margin-top: 30px;">71732 Tamm</p>
+            <div class="contact-box">
+                <h2>Terminanfrage</h2>
+                <p>Ich bin gerne für dich da:</p>
+                <a href="tel:015121216676">0151 21216676</a>
+                <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
+                <p style="margin-top: 30px; opacity: 0.7;">71732 Tamm</p>
             </div>
         </section>
 
     </div>
 
     <footer>
-        &copy; 2026 Melanies Massagestudio | 71732 Tamm
+        &copy; 2026 Melanies Massagestudio
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Icons initialisieren
+        lucide.createIcons();
+        
+        // Animationen initialisieren
         AOS.init({
             duration: 1000,
             once: true,
