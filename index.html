@@ -3,88 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melanie’s Massage Studio | Tamm</title>
+    <title>Melanie’s Massage Studio | Premium Bodywork</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --soft-white: #ffffff;
-            --smoke-green: #f2f7f1;
-            --text-black: #1a1a1a;
-            --accent-green: #c8d6c7;
+            --bg-pure: #ffffff;
+            --smoke-green: #f4f8f3;
+            --deep-black: #111111;
+            --accent-sage: #cbdccb;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--soft-white);
-            color: var(--text-black);
+            background-color: var(--bg-pure);
+            color: var(--deep-black);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
-        /* --- SMOKE ANIMATION HINTERGRUND --- */
-        .smoke-wrap {
+        /* --- LUXURY SMOKE BACKGROUND --- */
+        .smoke-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background: radial-gradient(circle at 50% 50%, #fff, var(--smoke-green));
         }
 
-        .blob {
+        .orb {
             position: absolute;
-            width: 700px; height: 700px;
-            background: var(--accent-green);
-            filter: blur(120px);
+            width: 80vw; height: 80vw;
+            background: var(--accent-sage);
+            filter: blur(140px);
             border-radius: 50%;
-            opacity: 0.3;
-            animation: move 30s infinite alternate ease-in-out;
+            opacity: 0.25;
+            animation: breathe 20s infinite alternate ease-in-out;
         }
 
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
+        @keyframes breathe {
+            0% { transform: translate(-5%, -5%) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
         }
 
-        /* --- NAVIGATION --- */
+        /* --- FLOATING NAVIGATION --- */
         nav {
             position: fixed;
             top: 30px; left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            max-width: 1000px;
-            padding: 20px 40px;
+            width: 90%; max-width: 1100px;
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(25px);
             border-radius: 100px;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.5s ease;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-brand {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: 300;
             letter-spacing: 1px;
-            font-weight: 400;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-black);
-            margin-left: 25px;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
+            color: var(--deep-black);
+            margin-left: 30px;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 300;
-            transition: opacity 0.3s;
+            transition: 0.3s;
         }
 
         .nav-links a:hover { opacity: 0.4; }
@@ -99,250 +98,261 @@
             text-align: center;
         }
 
-        .hero p {
-            font-size: 0.8rem;
-            letter-spacing: 12px;
+        .hero span {
+            font-size: 0.75rem;
+            letter-spacing: 15px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: 300;
+            margin-bottom: 25px;
+            font-weight: 200;
+            opacity: 0.6;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2.8rem, 9vw, 6rem);
             font-weight: 300;
             font-style: italic;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* --- CONTAINER --- */
+        /* --- ANIMATED SERVICE LIST --- */
         .content-section {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 120px 20px;
+            padding: 140px 20px;
+        }
+
+        .section-label {
             text-align: center;
-        }
-
-        .content-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
             margin-bottom: 60px;
-            font-weight: 300;
-            letter-spacing: 2px;
+            opacity: 0.5;
         }
 
-        /* --- LEISTUNGEN OHNE KACHELN --- */
-        .services-list {
-            list-style: none;
-        }
-
-        .service-entry {
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
+        .service-row {
+            position: relative;
+            padding: 40px 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            cursor: pointer;
+            overflow: hidden;
         }
 
-        .service-entry:hover {
-            transform: scale(1.05);
-            border-bottom-color: var(--text-black);
-        }
-
-        .service-entry span {
+        .service-row h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 300;
+            transition: 0.5s ease;
         }
 
-        .service-entry i {
-            color: var(--accent-green);
-            width: 20px;
+        .service-row .line {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 1px;
+            background: rgba(0,0,0,0.08);
         }
 
-        /* --- PREISE --- */
-        .pricing-minimal {
+        .service-row .line-grow {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0%; height: 1px;
+            background: var(--deep-black);
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .service-row:hover .line-grow { width: 100%; }
+        .service-row:hover h3 { transform: translateX(20px); font-style: italic; }
+
+        /* --- WERTSCHÄTZUNG (PRICING) --- */
+        .pricing-grid {
             display: flex;
             justify-content: space-around;
-            margin-top: 40px;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .price-item {
+            padding: 80px 0;
             text-align: center;
         }
 
-        .price-item div {
-            font-size: 0.7rem;
+        .price-unit div {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #999;
+        }
+
+        .price-unit h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+        }
+
+        /* --- THE CLEAN CONTACT REVEAL --- */
+        .contact-minimal {
+            text-align: center;
+            padding: 160px 20px;
+        }
+
+        .contact-minimal p {
+            font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #888;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
         }
 
-        .price-item h3 {
+        .contact-minimal h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-weight: 300;
+            margin-bottom: 60px;
+            font-style: italic;
         }
 
-        /* --- KONTAKT --- */
-        .luxury-contact {
-            background: var(--text-black);
-            color: #fff;
-            padding: 100px 20px;
-            border-radius: 2px;
-            margin-top: 100px;
-        }
-
-        .luxury-contact h2 { color: #fff; }
-        
-        .luxury-contact a {
-            display: block;
-            color: #fff;
+        .contact-link {
+            display: inline-block;
             text-decoration: none;
+            color: var(--deep-black);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin: 15px 0;
-            font-weight: 300;
-            transition: 0.3s;
+            font-size: 1.8rem;
+            margin: 0 30px;
+            position: relative;
+            padding-bottom: 5px;
         }
 
-        .luxury-contact a:hover { color: var(--accent-green); }
-
-        .location-text {
-            margin-top: 40px;
-            letter-spacing: 5px;
-            font-weight: 200;
-            font-size: 0.9rem;
+        .contact-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0%; height: 1px;
+            background: var(--deep-black);
+            transition: 0.4s ease;
         }
+
+        .contact-link:hover::after { width: 100%; }
 
         footer {
-            padding: 60px 20px;
+            padding: 80px 40px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
             font-size: 0.6rem;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            color: #aaa;
-            text-align: center;
+            text-transform: uppercase;
+            opacity: 0.4;
         }
 
         /* --- MOBILE --- */
         @media (max-width: 768px) {
-            nav { width: 95%; padding: 15px 20px; }
+            nav { padding: 15px 25px; width: 95%; }
             .nav-links { display: none; }
-            .service-entry span { font-size: 1.4rem; }
-            .pricing-minimal { flex-direction: column; }
+            .pricing-grid { flex-direction: column; gap: 60px; }
+            .contact-link { display: block; margin: 20px 0; font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="smoke-wrap">
-        <div class="blob"></div>
+    <div class="smoke-bg">
+        <div class="orb"></div>
     </div>
 
-    <nav id="floating-nav">
+    <nav id="navbar">
         <div class="nav-brand">Melanie’s Massage Studio</div>
         <div class="nav-links">
-            <a href="#services">Leistungen</a>
-            <a href="#prices">Preise</a>
-            <a href="#contact">Kontakt</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#wertschätzung">Wertschätzung</a>
+            <a href="#kontakt">Kontakt</a>
         </div>
     </nav>
 
     <header class="hero">
-        <p data-aos="fade-up" data-aos-duration="1500">Tamm</p>
-        <h1 data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">Melanie’s <br>Massage Studio</h1>
+        <span data-aos="fade-up" data-aos-duration="1200">71732 Tamm</span>
+        <h1 data-aos="fade-up" data-aos-duration="1600" data-aos-delay="200">Melanie’s <br>Massage Studio</h1>
     </header>
 
     <div class="container">
         
-        <section id="services" class="content-section">
-            <h2 data-aos="fade-up">Portfolio</h2>
-            <div class="services-list">
-                <div class="service-entry" data-aos="fade-up">
-                    <i data-lucide="minus"></i>
-                    <span>Klassische Massage</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="minus"></i>
-                    <span>Sportmassage</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="minus"></i>
-                    <span>Triggerpunkt & Deep Tissue</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="300">
-                    <i data-lucide="minus"></i>
-                    <span>Entspannungsmassage</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="400">
-                    <i data-lucide="minus"></i>
-                    <span>Kieferbalance R.E.S.E.T.&reg;</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="500">
-                    <i data-lucide="minus"></i>
-                    <span>Dorn-Therapie</span>
-                </div>
-                <div class="service-entry" data-aos="fade-up" data-aos-delay="600">
-                    <i data-lucide="minus"></i>
-                    <span>Schröpfmassage</span>
-                </div>
+        <section id="portfolio" class="content-section">
+            <p class="section-label" data-aos="fade-up">Ausgewählte Behandlungen</p>
+            
+            <div class="service-row" data-aos="fade-up">
+                <h3>Klassische Massage</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="100">
+                <h3>Sportmassage</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="200">
+                <h3>Triggerpunkt & Deep Tissue</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="300">
+                <h3>Entspannungsmassage</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="400">
+                <h3>Kieferbalance R.E.S.E.T.&reg;</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="500">
+                <h3>Dorn-Therapie</h3>
+                <div class="line"></div><div class="line-grow"></div>
+            </div>
+            <div class="service-row" data-aos="fade-up" data-aos-delay="600">
+                <h3>Schröpfmassage</h3>
+                <div class="line"></div><div class="line-grow"></div>
             </div>
         </section>
 
-        <section id="prices" class="content-section">
-            <h2 data-aos="fade-up">Investition</h2>
-            <div class="pricing-minimal">
-                <div class="price-item" data-aos="fade-up" data-aos-delay="100">
+        <section id="wertschätzung" class="content-section">
+            <p class="section-label" data-aos="fade-up">Wertschätzung</p>
+            <div class="pricing-grid">
+                <div class="price-unit" data-aos="fade-up">
                     <div>30 Minuten</div>
-                    <h3>30 €</h3>
+                    <h4>30€</h4>
                 </div>
-                <div class="price-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="price-unit" data-aos="fade-up" data-aos-delay="100">
                     <div>40 Minuten</div>
-                    <h3>40 €</h3>
+                    <h4>40€</h4>
                 </div>
-                <div class="price-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="price-unit" data-aos="fade-up" data-aos-delay="200">
                     <div>60 Minuten</div>
-                    <h3>60 €</h3>
+                    <h4>60€</h4>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="content-section">
-            <div class="luxury-contact" data-aos="zoom-in" data-aos-duration="1500">
-                <h2 style="font-style: italic;">Terminanfrage</h2>
-                <a href="tel:015121216676">0151 21216676</a>
-                <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
-                <p class="location-text">71732 TAMM</p>
+        <section id="kontakt" class="contact-minimal" data-aos="fade-up">
+            <p>Verbindung aufnehmen</p>
+            <h2>Bereit für eine Auszeit?</h2>
+            <div class="links-wrap">
+                <a href="tel:015121216676" class="contact-link">0151 21216676</a>
+                <a href="mailto:zoller.bodywork@hotmail.com" class="contact-link">zoller.bodywork@hotmail.com</a>
             </div>
+            <p style="margin-top: 80px; opacity: 0.3;">Tamm, Deutschland</p>
         </section>
 
     </div>
 
     <footer>
-        &copy; 2026 Melanie’s Massage Studio &bull; Tamm &bull; Pure Balance
+        <div>&copy; 2026 Melanie’s Massage Studio</div>
+        <div>Purist Aesthetics • Mindful Bodywork</div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        lucide.createIcons();
         AOS.init({ duration: 1200, once: true });
 
-        // Scroll-Animation für die Nav-Leiste
         window.onscroll = function() {
-            let nav = document.getElementById('floating-nav');
+            let nav = document.getElementById('navbar');
             if (window.pageYOffset > 50) {
-                nav.style.top = "10px";
-                nav.style.width = "95%";
-                nav.style.boxShadow = "0 15px 40px rgba(0,0,0,0.05)";
+                nav.style.top = "15px";
+                nav.style.background = "rgba(255, 255, 255, 0.85)";
             } else {
                 nav.style.top = "30px";
-                nav.style.width = "90%";
-                nav.style.boxShadow = "none";
+                nav.style.background = "rgba(255, 255, 255, 0.6)";
             }
         };
     </script>
