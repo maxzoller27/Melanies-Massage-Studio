@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Melanie’s Massage Studio | Premium Bodywork</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
@@ -18,6 +18,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-pure);
@@ -37,7 +39,7 @@
         .fog-ball {
             position: absolute;
             background: var(--fog-green);
-            filter: blur(100px);
+            filter: blur(80px);
             border-radius: 50%;
             animation: drift 25s infinite alternate ease-in-out;
             opacity: 0.7;
@@ -73,8 +75,8 @@
 
         nav.scrolled {
             top: 20px;
-            width: 95%;
-            padding: 10px 35px;
+            width: 90%;
+            padding: 10px 30px;
             background: rgba(255, 255, 255, 0.8);
             border-color: rgba(0,0,0,0.08);
             box-shadow: 0 15px 40px rgba(0,0,0,0.04);
@@ -86,6 +88,7 @@
             font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .nav-links a {
@@ -110,6 +113,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 0 20px;
         }
 
         .hero span {
@@ -126,26 +130,29 @@
             font-weight: 300;
             font-style: italic;
             letter-spacing: -1px;
+            line-height: 1.1;
         }
 
-        /* --- LEISTUNGEN --- */
+        /* --- SECTIONS --- */
         .section {
-            padding: 150px 20px;
+            padding: 120px 20px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .label {
             font-size: 0.6rem;
             letter-spacing: 12px;
             text-transform: uppercase;
-            margin-bottom: 120px;
+            margin-bottom: 80px;
             opacity: 0.3;
         }
 
         .service-stack {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 35px;
         }
 
         .service-stack h3 {
@@ -160,8 +167,8 @@
         .pricing-row {
             display: flex;
             justify-content: center;
-            gap: 120px;
-            margin-top: 50px;
+            gap: 100px;
+            margin-top: 40px;
         }
 
         .price-item .time {
@@ -180,8 +187,8 @@
 
         /* --- KONTAKT --- */
         .contact-card {
-            margin: 100px auto;
-            padding: 120px 40px;
+            margin: 60px auto;
+            padding: 100px 20px;
             max-width: 800px;
             border-top: 1px solid rgba(0,0,0,0.03);
             border-bottom: 1px solid rgba(0,0,0,0.03);
@@ -189,9 +196,9 @@
 
         .contact-card h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.2rem;
+            font-size: clamp(2.5rem, 6vw, 3.2rem);
             font-weight: 300;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             font-style: italic;
         }
 
@@ -200,16 +207,15 @@
             text-decoration: none;
             color: var(--deep-black);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
             margin: 15px 0;
             font-weight: 300;
             transition: 0.5s;
+            word-break: break-all;
         }
 
-        .contact-card a:hover { opacity: 0.4; }
-
         footer {
-            padding: 100px 20px;
+            padding: 80px 20px;
             text-align: center;
             font-size: 0.6rem;
             letter-spacing: 5px;
@@ -217,10 +223,30 @@
             opacity: 0.3;
         }
 
+        /* --- MOBILE OPTIMIERUNG (SYMMETRIE-FIX) --- */
         @media (max-width: 768px) {
-            .pricing-row { flex-direction: column; gap: 60px; }
+            nav {
+                width: calc(100% - 40px);
+                top: 20px;
+                padding: 12px 20px;
+                justify-content: center; /* Symmetrische Zentrierung auf Mobile */
+            }
             .nav-links { display: none; }
-            nav { width: 90%; top: 20px; }
+            .nav-brand { font-size: 1.1rem; letter-spacing: 1px; }
+
+            .section { padding: 80px 25px; }
+            
+            .pricing-row { 
+                flex-direction: column; 
+                gap: 40px; 
+                align-items: center; 
+            }
+            
+            .price-item .val { font-size: 3rem; }
+
+            .hero h1 { font-size: 3.2rem; }
+            
+            .contact-card { padding: 60px 15px; margin: 40px auto; }
         }
     </style>
 </head>
@@ -251,19 +277,19 @@
         <section id="leistungen" class="section">
             <p class="label" data-aos="fade-up">Ausgewähltes Portfolio</p>
             <div class="service-stack">
-                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500"><h3>Klassische Massage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="250" data-aos-duration="1500"><h3>Sportmassage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500"><h3>Triggerpunkt & Deep Tissue</h3></div>
-                <div data-aos="fade-up" data-aos-delay="550" data-aos-duration="1500"><h3>Entspannungsmassage</h3></div>
-                <div data-aos="fade-up" data-aos-delay="700" data-aos-duration="1500"><h3>Kieferbalance R.E.S.E.T.&reg;</h3></div>
-                <div data-aos="fade-up" data-aos-delay="850" data-aos-duration="1500"><h3>Dorn-Therapie</h3></div>
-                <div data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1500"><h3>Schröpfmassage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="100"><h3>Klassische Massage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="200"><h3>Sportmassage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="300"><h3>Triggerpunkt & Deep Tissue</h3></div>
+                <div data-aos="fade-up" data-aos-delay="400"><h3>Entspannungsmassage</h3></div>
+                <div data-aos="fade-up" data-aos-delay="500"><h3>Kieferbalance R.E.S.E.T.&reg;</h3></div>
+                <div data-aos="fade-up" data-aos-delay="600"><h3>Dorn-Therapie</h3></div>
+                <div data-aos="fade-up" data-aos-delay="700"><h3>Schröpfmassage</h3></div>
             </div>
         </section>
 
         <section id="preise" class="section">
             <p class="label" data-aos="fade-up">Preise</p>
-            <div class="pricing-row" data-aos="fade-up" data-aos-duration="2000">
+            <div class="pricing-row" data-aos="fade-up">
                 <div class="price-item">
                     <div class="time">30 Minuten</div>
                     <div class="val">30€</div>
@@ -280,11 +306,11 @@
         </section>
 
         <section id="anfrage" class="section">
-            <div class="contact-card" data-aos="fade-up" data-aos-duration="2000">
+            <div class="contact-card" data-aos="fade-up">
                 <h2>Terminanfrage</h2>
                 <a href="tel:015121216676">0151 21216676</a>
                 <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
-                <p style="margin-top: 60px; font-size: 0.6rem; letter-spacing: 8px; opacity: 0.3;">Tamm • Baden-Württemberg</p>
+                <p style="margin-top: 40px; font-size: 0.6rem; letter-spacing: 8px; opacity: 0.3;">Tamm • Baden-Württemberg</p>
             </div>
         </section>
 
@@ -298,12 +324,13 @@
     <script>
         AOS.init({ 
             once: true,
-            easing: 'ease-out-quad'
+            easing: 'ease-out-quad',
+            duration: 1200
         });
 
         window.onscroll = function() {
             const nav = document.getElementById('main-nav');
-            if (window.pageYOffset > 80) {
+            if (window.pageYOffset > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
