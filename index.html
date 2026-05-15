@@ -26,7 +26,7 @@
             line-height: 1.6;
         }
 
-        /* --- DYNAMISCHER NEBEL (OPTIMIERT) --- */
+        /* --- DYNAMISCHER NEBEL --- */
         .fog-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -128,7 +128,7 @@
             letter-spacing: -1px;
         }
 
-        /* --- LEISTUNGEN (DEZENTER & ANIMIERT) --- */
+        /* --- LEISTUNGEN --- */
         .section {
             padding: 150px 20px;
             text-align: center;
@@ -145,12 +145,12 @@
         .service-stack {
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Enge Abstände für Eleganz */
+            gap: 40px;
         }
 
         .service-stack h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.4rem, 3.5vw, 2.2rem); /* Schriftgröße reduziert */
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
             font-weight: 300;
             letter-spacing: 1px;
             color: rgba(26, 26, 26, 0.85);
@@ -233,7 +233,7 @@
     </div>
 
     <nav id="main-nav">
-        <div class="nav-brand">Melanie’s</div>
+        <div class="nav-brand">Melanie’s Massage Studio</div>
         <div class="nav-links">
             <a href="#leistungen">Portfolio</a>
             <a href="#preise">Preise</a>
@@ -251,7 +251,6 @@
         <section id="leistungen" class="section">
             <p class="label" data-aos="fade-up">Ausgewähltes Portfolio</p>
             <div class="service-stack">
-                <!-- Staggered Animation mit individuellen Delay-Werten -->
                 <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500"><h3>Klassische Massage</h3></div>
                 <div data-aos="fade-up" data-aos-delay="250" data-aos-duration="1500"><h3>Sportmassage</h3></div>
                 <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500"><h3>Triggerpunkt & Deep Tissue</h3></div>
@@ -297,13 +296,11 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS mit sanfteren Einstellungen
         AOS.init({ 
             once: true,
             easing: 'ease-out-quad'
         });
 
-        // Optimierte Scroll-Logik
         window.onscroll = function() {
             const nav = document.getElementById('main-nav');
             if (window.pageYOffset > 80) {
