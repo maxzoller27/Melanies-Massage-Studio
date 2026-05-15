@@ -6,9 +6,8 @@
     <title>Melanies Massagestudio | Tamm</title>
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Lucide Icons für die Piktogramme -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -50,7 +49,7 @@
             height: 80vw;
             background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
             filter: blur(100px);
-            opacity: 0.4;
+            opacity: 0.3;
             animation: move 20s infinite alternate ease-in-out;
         }
 
@@ -61,7 +60,7 @@
 
         /* Header */
         header {
-            height: 100vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -70,18 +69,19 @@
             padding: 20px;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 7vw, 4rem);
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+        .location-header {
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: var(--deep-black);
+            margin-bottom: 15px;
+            font-weight: 300;
         }
 
-        .tagline {
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #777;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 400;
         }
 
         /* Sektionen */
@@ -92,7 +92,7 @@
         }
 
         section {
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         h2 {
@@ -102,36 +102,39 @@
             margin-bottom: 50px;
         }
 
-        /* Leistungen mit Piktogrammen */
+        /* Leistungen Grid - Optimiert für 7 Kacheln (4+3 oder zentriert) */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 25px;
         }
 
         .service-card {
             background: var(--smoke-rgba);
             backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 35px;
             text-align: center;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            flex: 1 1 250px;
+            max-width: 320px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
             transition: all 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             background: var(--soft-white);
             border-color: var(--accent-green);
         }
 
         .icon-box {
             color: var(--accent-green);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        /* "Zeit für Dich" Kacheln - NEU */
+        /* Zeit für Dich Kacheln */
         .pricing-container {
             display: flex;
             flex-wrap: wrap;
@@ -142,60 +145,92 @@
         .price-card {
             background: var(--soft-white);
             border: 1px solid var(--pastel-green);
-            padding: 30px;
-            width: 250px;
-            border-radius: 100px; /* Abgerundete Pillenform */
+            padding: 25px 40px;
+            min-width: 220px;
+            border-radius: 50px;
             text-align: center;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .price-card:hover {
             background: var(--deep-black);
             color: white;
+            border-color: var(--deep-black);
         }
 
         .price-card span {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
 
         .price-card strong {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-family: 'Playfair Display', serif;
         }
 
-        /* Kontakt */
+        /* Kontakt Bereich - Symmetrie Fix */
         .contact-box {
             background: var(--deep-black);
             color: white;
-            padding: 80px 40px;
+            padding: 60px 40px;
             border-radius: 30px;
             text-align: center;
+        }
+
+        .contact-box h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-content {
+            font-family: 'Montserrat', sans-serif; /* Einheitliche Schrift */
+        }
+
+        .contact-content p {
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
         .contact-box a {
             color: var(--accent-green);
             text-decoration: none;
-            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             display: block;
-            margin: 15px 0;
-            font-weight: 600;
+            margin: 10px 0;
+            font-weight: 400;
+            transition: opacity 0.3s;
+        }
+
+        .contact-box a:hover {
+            opacity: 0.8;
+        }
+
+        .address {
+            margin-top: 30px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         footer {
             padding: 40px;
             text-align: center;
-            font-size: 0.8rem;
-            color: #999;
+            font-size: 0.75rem;
+            color: #bbb;
+            letter-spacing: 1px;
         }
 
         /* Mobile Anpassung */
         @media (max-width: 768px) {
-            section { padding: 60px 0; }
-            .price-card { width: 100%; border-radius: 15px; }
+            header { height: 60vh; }
+            section { padding: 50px 0; }
+            .service-card { flex: 1 1 100%; }
+            .price-card { width: 100%; }
         }
     </style>
 </head>
@@ -205,43 +240,42 @@
         <div class="smoke-blob"></div>
     </div>
 
-    <header data-aos="zoom-out" data-aos-duration="1500">
-        <p class="tagline">Tamm • Wohlbefinden • Balance</p>
+    <header data-aos="fade-down" data-aos-duration="1200">
+        <p class="location-header">Tamm</p>
         <h1>Melanies Massagestudio</h1>
-        <div style="width: 40px; height: 1px; background: #000; margin-top: 20px;"></div>
     </header>
 
     <div class="container">
         
         <section id="leistungen">
-            <h2 data-aos="fade-up">Heilsame Berührungen</h2>
+            <h2 data-aos="fade-up">Leistungen</h2>
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="icon-box"><i data-lucide="hand"></i></div>
                     <h3>Klassische Massage</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box"><i data-lucide="activity"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i data-lucide="zap"></i></div>
                     <h3>Sportmassage</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon-box"><i data-lucide="target"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i data-lucide="fingerprint"></i></div>
                     <h3>Triggerpunkt & Deep Tissue</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="icon-box"><i data-lucide="wind"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box"><i data-lucide="leaf"></i></div>
                     <h3>Entspannungsmassage</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="icon-box"><i data-lucide="refresh-cw"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon-box"><i data-lucide="smile"></i></div>
                     <h3>Kieferbalance R.E.S.E.T.&reg;</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="icon-box"><i data-lucide="accessibility"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="icon-box"><i data-lucide="align-center"></i></div>
                     <h3>Dorn-Therapie</h3>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="700">
-                    <div class="icon-box"><i data-lucide="circle-dot"></i></div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="icon-box"><i data-lucide="layers"></i></div>
                     <h3>Schröpfmassage</h3>
                 </div>
             </div>
@@ -250,15 +284,15 @@
         <section id="preise">
             <h2 data-aos="fade-up">Zeit für Dich</h2>
             <div class="pricing-container">
-                <div class="price-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="100">
                     <span>30 Minuten</span>
                     <strong>30 €</strong>
                 </div>
-                <div class="price-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="200">
                     <span>40 Minuten</span>
                     <strong>40 €</strong>
                 </div>
-                <div class="price-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="300">
                     <span>60 Minuten</span>
                     <strong>60 €</strong>
                 </div>
@@ -267,11 +301,13 @@
 
         <section id="kontakt" data-aos="fade-up">
             <div class="contact-box">
-                <h2>Terminanfrage</h2>
-                <p>Ich bin gerne für dich da:</p>
-                <a href="tel:015121216676">0151 21216676</a>
-                <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
-                <p style="margin-top: 30px; opacity: 0.7;">71732 Tamm</p>
+                <h2>Kontakt</h2>
+                <div class="contact-content">
+                    <p>Für Terminfragen kontaktiere mich gerne unter:</p>
+                    <a href="tel:015121216676">0151 21216676</a>
+                    <a href="mailto:zoller.bodywork@hotmail.com">zoller.bodywork@hotmail.com</a>
+                    <p class="address">71732 Tamm</p>
+                </div>
             </div>
         </section>
 
@@ -281,13 +317,9 @@
         &copy; 2026 Melanies Massagestudio
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Icons initialisieren
         lucide.createIcons();
-        
-        // Animationen initialisieren
         AOS.init({
             duration: 1000,
             once: true,
